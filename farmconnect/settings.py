@@ -24,7 +24,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'cloud99studio304@gmail.com'  # Replace with your email
-EMAIL_HOST_PASSWORD = 'L3mind&d'  # Replace with your email password
+EMAIL_HOST_PASSWORD = ''  # Replace with your email password
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
