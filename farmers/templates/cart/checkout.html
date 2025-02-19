@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Checkout</h3>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="mb-3">Total Amount: <span class="text-success">${{ total_price }}</span></h4>
+                    
+                    <form action="{% url 'process_payment' order.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success w-100 mb-3">
+                            <i class="fas fa-money-bill-wave"></i> Pay Now
+                        </button>
+                    </form>
+
+                    <hr>
+
+                    <button id="checkout-button" class="btn btn-warning w-100">
+                        <i class="fab fa-stripe"></i> Pay with Stripe
+                    </button>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'cart_view' %}" class="btn btn-secondary">Back to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+
+    document.getElementById("checkout-button").addEventListener("click", function () {
+        fetch("{% url 'process_payment' order.id %}")
+        .then(response => response.json())
+        .then(data => {
+            stripe.redirectToCheckout({ sessionId: data.id });
+        });
+    });
+</script>
+{% endblock %}

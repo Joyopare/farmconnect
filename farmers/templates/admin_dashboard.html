@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Admin Dashboard</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5>Total Farmers</h5>
+                    <h3>{{ total_farmers }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Total Customers</h5>
+                    <h3>{{ total_customers }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5>Total Orders</h5>
+                    <h3>{{ total_orders }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5>Total Revenue</h5>
+                    <h3>${{ total_revenue }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mt-4">Order Status</h2>
+    <canvas id="orderChart"></canvas>
+
+    <h2 class="mt-4">Top Rated Farmers</h2>
+    <ul class="list-group">
+        {% for farmer in top_farmers %}
+            <li class="list-group-item">
+                <strong>{{ farmer.farm_name }}</strong> - ⭐ {{ farmer.avg_rating|floatformat:1 }}
+            </li>
+        {% empty %}
+            <li class="list-group-item">No ratings yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+var ctx = document.getElementById('orderChart').getContext('2d');
+var orderChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Pending', 'Shipped', 'Delivered'],
+        datasets: [{
+            data: [{{ pending_orders }}, {{ shipped_orders }}, {{ delivered_orders }}],
+            backgroundColor: ['red', 'blue', 'green']
+        }]
+    }
+});
+</script>
+
+{% endblock %}

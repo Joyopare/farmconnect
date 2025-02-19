@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-info text-white text-center">
+                    <h3>Track Your Order</h3>
+                </div>
+                <div class="card-body text-center">
+                    <form method="GET" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="order_id" class="form-control" placeholder="Enter Order ID">
+                            <button type="submit" class="btn btn-primary">Track</button>
+                        </div>
+                    </form>
+
+                    {% if order %}
+                        <div class="alert alert-success">
+                            <h5>Order Details</h5>
+                            <p><strong>Order ID:</strong> {{ order.id }}</p>
+                            <p><strong>Status:</strong> <span class="badge bg-warning text-dark">{{ order.get_status_display }}</span></p>
+                            <p><strong>Farmer:</strong> {{ order.farmer.farm_name }}</p>
+                            <p><strong>Product:</strong> {{ order.product }}</p>
+                        </div>
+                    {% elif order_id %}
+                        <div class="alert alert-danger">
+                            No order found with ID <strong>"{{ order_id }}"</strong>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'product_list' %}" class="btn btn-secondary">Back to Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

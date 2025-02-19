@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Products by {{ farmer.user.username }}</h2>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg mb-4">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="/media/default-product.jpg" class="card-img-top" alt="No Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">{{ product.name }}</h4>
+                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+                            <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+                            <p class="card-text">
+                                <strong>Available:</strong> 
+                                {% if product.available %}
+                                    <span class="badge bg-success">Yes</span>
+                                {% else %}
+                                    <span class="badge bg-danger">No</span>
+                                {% endif %}
+                            </p>
+                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary w-100">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center">No products available.</div>
+    {% endif %}
+</div>
+{% endblock %}

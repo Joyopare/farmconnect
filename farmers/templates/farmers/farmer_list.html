@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="{% url 'farmer_search' %}" method="GET">
+    <input type="text" name="q" placeholder="Search farmers..." />
+    <button type="submit">Search</button>
+</form>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Farmers Directory</h1>
+
+
+    <div class="row">
+        {% for farmer in farmers %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm">
+                {% if farmer.profile_picture %}
+                <img src="{{ farmer.profile_picture.url }}" class="card-img-top" alt="Profile Picture">
+                {% else %}
+                <img src="/media/profile_pics/default.jpg" class="card-img-top" alt="Default Profile Picture">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ farmer.farm_name }}</h5>
+                    <p class="card-text"><strong>📍 Location:</strong> {{ farmer.location }}</p>
+                    <p class="card-text"><strong>📌 Category:</strong> {{ farmer.get_category_display }}</p>
+                    <p class="card-text"><strong>👥 Followers:</strong> {{ farmer.followers }}</p>
+                    <p class="card-text"><strong>⭐ Rating:</strong> {{ farmer.rating }}</p>
+                    <a href="{% url 'farmer_products' farmer.user.username %}" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No farmers available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

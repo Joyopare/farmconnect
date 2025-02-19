@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Search Results for "{{ query }}"</h2>
+
+    {% if farmers %}
+        <div class="row">
+            {% for farmer in farmers %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">{{ farmer.farm_name }}</h4>
+                            <p class="card-text"><strong>Location:</strong> {{ farmer.location }}</p>
+                            <p class="card-text"><strong>Category:</strong> {{ farmer.get_category_display }}</p>
+                            <p class="card-text"><strong>Followers:</strong> {{ farmer.followers }}</p>
+                            <p class="card-text"><strong>Rating:</strong> ⭐ {{ farmer.rating }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-danger text-center">
+            <p>No farmers found.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
