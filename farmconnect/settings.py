@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-eahs__)4xx%3hh69(k%2&=7fo7v=3rx4$%vd^u2j3x^y37yej@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app' ,'127.0.0.1']
 
 
 # Application definition
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'farmconnect.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -93,6 +93,20 @@ DATABASES = {
     'PASSWORD': 'WdKbabnrAKVtsgIxullvAHfoEFPjVHSi',
     'HOST': 'gondola.proxy.rlwy.net',
     'PORT': '46211',
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'neondb',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'npg_ezTH9kyGxiX8',
+        'HOST': 'ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
@@ -143,3 +157,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/products/'  # Redirect to product page after login
 LOGOUT_REDIRECT_URL = '/login/'    # Redirect to login page after logout
 
+
+"""# Recommended for most uses
+DATABASE_URL=postgres://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
+
+# For uses requiring a connection without pgbouncer
+DATABASE_URL_UNPOOLED=postgresql://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56.us-east-1.aws.neon.tech/neondb?sslmode=require
+
+# Parameters for constructing your own connection string
+PGHOST=ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech
+PGHOST_UNPOOLED=ep-rapid-morning-a4205f56.us-east-1.aws.neon.tech
+PGUSER=neondb_owner
+PGDATABASE=neondb
+PGPASSWORD=npg_ezTH9kyGxiX8
+
+# Parameters for Vercel Postgres Templates
+POSTGRES_URL=postgres://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
+POSTGRES_URL_NON_POOLING=postgres://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56.us-east-1.aws.neon.tech/neondb?sslmode=require
+POSTGRES_USER=neondb_owner
+POSTGRES_HOST=ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech
+POSTGRES_PASSWORD=npg_ezTH9kyGxiX8
+POSTGRES_DATABASE=neondb
+POSTGRES_URL_NO_SSL=postgres://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech/neondb
+POSTGRES_PRISMA_URL=postgres://neondb_owner:npg_ezTH9kyGxiX8@ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech/neondb?pgbouncer=true&connect_timeout=15&sslmode=require
+"""
