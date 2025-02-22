@@ -7,8 +7,14 @@
         "config": {
           "maxLambdaSize": "15mb",
           "runtime": "python3.12"
-        }
+        },
+        "commands": {
+            "install": "pip install -r requirements.txt",
+            "collectstatic": "python manage.py collectstatic --noinput",
+            "migrate": "python manage.py migrate"
+          }
       },
+
       {
         "src": "build_files.sh",
         "use": "@vercel/static-build",
