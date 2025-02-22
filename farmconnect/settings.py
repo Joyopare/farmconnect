@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +31,7 @@ EMAIL_HOST_PASSWORD = ''  # Replace with your email password
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-eahs__)4xx%3hh69(k%2&=7fo7v=3rx4$%vd^u2j3x^y37yej@'
+SECRET_KEY = config('DJKEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -84,31 +85,18 @@ WSGI_APPLICATION = 'farmconnect.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'railway',
-    'USER': 'postgres',
-    'PASSWORD': 'WdKbabnrAKVtsgIxullvAHfoEFPjVHSi',
-    'HOST': 'gondola.proxy.rlwy.net',
-    'PORT': '46211',
+    'NAME': config('PNAME'),
+    'USER': config('PUSER'),
+    'PASSWORD': config('PPASS'),
+    'HOST': config('PHOST'),
+    'PORT': config('PPORT'),
     }
 }
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb',
-        'USER': 'neondb_owner',
-        'PASSWORD': 'npg_ezTH9kyGxiX8',
-        'HOST': 'ep-rapid-morning-a4205f56-pooler.us-east-1.aws.neon.tech',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
-    }
-}
+
 
 
 # Password validation
