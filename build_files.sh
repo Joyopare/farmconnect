@@ -1,6 +1,10 @@
-pip install -r requirements.txt
-python manage.py collectstatic --noinput
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
+#!/bin/bash
 
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Collect static files (if using Django)
+python manage.py collectstatic --noinput
+
+# Run migrations (if using Django)
+python manage.py migrate
