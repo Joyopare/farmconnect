@@ -41,7 +41,7 @@ urlpatterns = [
     path('process-payment/<int:order_id>/', views.process_payment, name='process_payment'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('register/', views.register, name='register'),
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('farmer/<str:username>/products/', views.farmer_products, name='farmer_products'),
     path('farmer/<str:username>/', views.farmer_profile, name='farmer_profile'),

@@ -33,7 +33,7 @@ EMAIL_HOST_PASSWORD = ''  # Replace with your email password
 SECRET_KEY = 'django-insecure-eahs__)4xx%3hh69(k%2&=7fo7v=3rx4$%vd^u2j3x^y37yej@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.vercel.app' ,'127.0.0.1']
 
@@ -155,7 +155,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/products/'  # Redirect to product page after login
-LOGOUT_REDIRECT_URL = '/login/'    # Redirect to login page after logout
+LOGOUT_REDIRECT_URL = '/register/'    # Redirect to login page after logout
 
 
 """# Recommended for most uses
