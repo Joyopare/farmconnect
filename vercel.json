@@ -2,12 +2,15 @@
     "version": 2,
     "builds": [
       {
-        "src": "farmconnect/wsgi.py",
-        "use": "@vercel/python",
+        "src": "Dockerfile",
+      "use": "@vercel/docker",
         "config": {
           "maxLambdaSize": "15mb",
           "runtime": "python3.12"
         },
+        "env": {
+            "PYTHON_VERSION": "3.12"
+          },
         "commands": {
             "install": "pip install -r requirements.txt",
             "collectstatic": "python manage.py collectstatic --noinput",
